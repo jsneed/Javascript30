@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>kecode.info</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <style>
+            body {
+                text-align: center;
+            }
+            .center {
+                padding-top: 125px;
+                display: inline-block;
+                margin: 0 auto;
+                width: 400px;
+                height: 400px;
+            }
+            h1 {
+                font-family: Verdana, sans-serif;
+                font-weight: normal;
+                font-size: 175pt;
+                margin-bottom: 0px;
+            }
+            h2.show_letter {
+                margin: 0 auto;
+                font-family: Verdana, sans-serif;
+                font-weight: normal;
+                font-size: 16pt;
+                margin-top: 0px;
+                width: 30px;
+                height: 30px;
+                background-color: lightgray;
+                box-shadow: 1px 1px darkgray;
+            }
+        </style>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div class="center">
+            <h1></h1>
+            <h2></h2>
+        </div>
+        
+        <script>
+        window.addEventListener('keydown', function(e){
+            console.log(e);
+            document.getElementsByTagName('h1')[0].innerText = e.keyCode;
+            document.getElementsByTagName('h2')[0].innerText = e.key;
+            document.getElementsByTagName('h2')[0].className = 'show_letter';
+        });
+        window.addEventListener('keyup', function(e){
+            console.log(e);
+            setTimeout(0.75);
+            document.getElementsByTagName('h1')[0].innerText = "";
+            document.getElementsByTagName('h2')[0].innerText = "";
+            document.getElementsByTagName('h2')[0].className = '';
+        });
+        </script>
+    </body>
+</html>

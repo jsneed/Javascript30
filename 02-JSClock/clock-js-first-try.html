@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <style>
+            html {
+                background: #018DED url(http://unsplash.it/1500/1000?image=881&blur=5);
+                background-size: cover;
+                font-family: 'helvetica neue';
+                text-align: center;
+                font-size: 10px;
+            }
+            body {
+                margin: 0;
+                font-size: 2rem;
+                display: flex;
+                flex: 1;
+                min-height: 100vh;
+                align-items: center;
+            }
+            .clock {
+                width: 30rem;
+                height: 30rem;
+                border: 20px solid white;
+                border-radius: 50%;
+                margin: 50px auto;
+                position: relative;
+                padding: 2rem;
+                box-shadow:
+                    0 0 0 4px rgba(0,0,0,0.1),
+                    inset 0 0 0 3px #EFEFEF,
+                    inset 0 0 10px black,
+                    0 0 10px rgba(0,0,0,0.2);
+            }
+            .clock-face {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                transform: translateY(-3px);
+            }
+            .hand {
+                width: 50%;
+                height: 6px;
+                background: black;
+                position: absolute;
+                top: 50%;
+                
+            }
+            .rotate {
+                transform: rotate(45deg);
+                transform-origin: top right;
+            }
+        </style>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div class="clock">
+            <div class="clock-face">
+                <div class="hand hour-hand"></div>
+                <div class="hand minute-hand"></div>
+                <div class="hand second-hand"></div>
+            </div>
+        </div>
+        
+        <script>
+            //window.addEventListener('keydown', function(e){
+            //window.onload = function(e){
+            function setTime() {
+                var start = new Date();
+
+                console.log(start.getHours()-12);
+                hours = start.getHours();
+                if(hours > 12) hours = hours - 12;
+                var hourDegrees = ((hours / 12) * 360) + 90;
+                hourHand = document.querySelector('.hour-hand');
+                hourHand.style.transformOrigin = 'center right';
+                hourHand.style.transform = `rotate(${hourDegrees}deg)`;
+                
+
+                console.log(start.getMinutes());
+                var minDegrees = ((start.getMinutes() / 60) * 360) + 90;
+                minuteHand = document.querySelector('.minute-hand');
+                minuteHand.style.transformOrigin = 'center right';
+                minuteHand.style.transform = `rotate(${minDegrees}deg)`;
+
+                console.log(start.getSeconds());
+                var secDegrees = ((start.getSeconds() / 60) * 360) + 90;
+                secondHand = document.querySelector('.second-hand');
+                secondHand.style.transformOrigin = 'center right';
+                secondHand.style.transform = `rotate(${secDegrees}deg)`;
+            };
+            var t = setInterval(setTime, 1000);
+        </script>
+    </body>
+</html>
