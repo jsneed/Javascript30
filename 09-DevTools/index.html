@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Console Tricks!</title>
+    </head>
+    <body>
+
+        <p onClick="makeGreen()">×BREAK×DOWN×</p>
+
+        <script>
+            const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+
+            function makeGreen() {
+                const p = document.querySelector('p');
+                p.style.color = '#BADA55';
+                p.style.fontSize = '50px';
+            }
+
+            // Regular
+            console.log('yup');
+
+            // Interpolated
+            console.log('Blah %s', 'ttt');
+
+            // Styled
+            console.log('%c Hi I\'m a widget', 'font-size: 25px; color: blue');
+
+            // warning!
+            console.warn('Whoops...');
+
+            // Error :|
+            console.error('Yeah, I broke it');
+
+            // Info
+            console.info('I am a meat popsicle');
+
+            // Testing
+            console.assert((9 * 9) === 81, 'Text shown if assertion is wrong');
+
+            const p = document.querySelector('p');
+            console.assert(p.className === 'first', 'You\'ve selected the wrong element');
+
+            // clearing
+            //console.clear();
+
+            // Viewing DOM Elements
+            console.log(p); //shows html text
+            console.dir(p); //shows the element from the javascript view, i.e. methods (listed under proto) and attrs
+
+            // Grouping together
+            dogs.forEach(dog => {
+                console.group(`${dog.name}`);
+                console.log(`My name is ${dog.name}.`);
+                console.log(`My name is ${dog.name} and I am ${dog.age} years old.`);
+                console.log(`My name is ${dog.name} and I am ${dog.age * 7} years old in human yrs.`);
+                console.groupEnd(`${dog.name}`);
+            });
+
+            dogs.forEach(dog => {
+                console.groupCollapsed(`${dog.name}`);
+                console.log(`My name is ${dog.name}.`);
+                console.log(`My name is ${dog.name} and I am ${dog.age} years old.`);
+                console.log(`My name is ${dog.name} and I am ${dog.age * 7} years old in human yrs.`);
+                console.groupEnd(`${dog.name}`);
+            });
+
+            // counting
+            console.count('mmm');
+            console.count('mmm');
+            console.count(p);
+            console.count(p);
+
+            // timing
+            console.time('fetch data');
+            fetch('https://api.github.com/users/jsneed').then(data => data.json()).then(data => {
+                console.timeEnd('fetch data');
+                console.log(data);
+            });
+
+            // Table
+            console.table(dogs);
+
+        </script>
+    </body>
+</html>

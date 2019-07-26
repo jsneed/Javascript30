@@ -8,3 +8,6 @@ https://github.com/wesbos/JavaScript30
 
 ## CSS Flexbox Course
 https://flexbox.io
+
+## Explanation of HSL
+https://mothereffinghsl.com/

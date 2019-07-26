@@ -17,8 +17,17 @@
         <script>
             const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
             const cities = [];
-            fetch(endpoint).then(blob => blob.json()).then(data => cities.push(...data));
-            console.log(cities);
+            fetch(endpoint).then(blob => blob.json()).then(data => {
+                cities.push(...data);
+                console.group('async');
+                console.log(cities);
+                console.log(cities[0]);
+                console.log(findMatches('Ann A', cities)); //Will work because run after fetch completed
+                console.groupEnd('async');
+            });
+            console.group('not async 1');
+            console.log(cities); // Will return empty list at first until fetch completed
+            console.groupEnd('not async 1');
 
             function numberWithCommas(x) {
                 return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -51,7 +60,10 @@
             searchInput.addEventListener('change', displayMatches);
             searchInput.addEventListener('keyup', displayMatches);
             setTimeout(20000);
-            console.log(findMatches('Mich', cities));
+
+            console.group('not async 2');
+            console.log(findMatches('Mich', cities)); //Won't work since fetch hasn't completed yet
+            console.groupEnd('not async 2');
         </script>
     </body>
 </html>
